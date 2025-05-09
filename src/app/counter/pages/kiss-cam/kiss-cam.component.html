@@ -1,0 +1,15 @@
+<div class="w-[1024px] h-[384px] flex justify-end items-center">
+    <img src="img/duolens.gif" alt="Fondo Kiss Cam" class="h-[385px] w-[1024px] absolute z-20">
+    <!--  @if (cam() == 0) {
+        <webcam [allowCameraSwitch]="false" class="h-[100%] pr-16"></webcam>
+    } -->
+        @if (showHearts()) {
+            <img #showHearts src="img/hearts.gif" class="absolute right-32 opacity-65 fadeIn">
+        }
+    <img [src]="cam()" class="h-[115%] pr-12">
+</div>
+@if (socket.timer() != "00:00") {
+<div class="absolute z-20 -bottom-1 -right-12 scale-75">
+    <app-mini-counter />
+</div>
+}

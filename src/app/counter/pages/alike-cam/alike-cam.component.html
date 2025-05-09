@@ -1,0 +1,52 @@
+<div class="w-full h-full grid grid-cols-2 relative">
+    <div class="w-full h-full bg-[#0635C9] flex flex-col items-center relative justify-center gap-10">
+        <div class="flex justify-center items-center w-1/2 border border-white rounded-2xl p-3">
+            <img src="img/clipp.webp">
+        </div>
+        <div class="font-gothamb text-center text-white">
+            <span class="text-5xl">
+                LOOK-ALIKE
+            </span>
+            <br>
+            <span class="text-9xl">
+                CAM
+            </span>
+        </div>
+        <div class="absolute bottom-0 right-0 flex justify-center mix-blend-color-burn w-1/2">
+            <img src="img/clipp-path.png">
+        </div>
+    </div>
+
+    <div class="w-full h-full items-center justify-center bg-black overflow-hidden">
+        <img [src]="cam()" class="w-[100%] h-full  scale-150 ">
+    </div>
+
+    <!-- VERSION 1 CON FRAME -->
+   <!--  <div [ngClass]="interactiveClass()" class="w-1/2 flex justify-center items-center h-full bg-[#0635C9] absolute right-0  overflow-hidden  ">
+        <div
+        class="frame shadow-frame flex overflow-hidden flex-col items-center justify-center  h-[90%] w-3/5 relative">
+            <img 
+            [ngClass]="auxClass()"
+            class="max-h-[95%] max-w-[95%]" [src]="img()"/>
+            <span  class="bg-white w-11/12 text-center text-2xl font-gothamb my-2">
+                GOKU
+            </span>
+        </div>
+    </div> -->
+
+    <!-- VERSION 2 FULL NO FRAME -->
+    <div [ngClass]="interactiveClass()" class="w-1/2 flex justify-center items-center h-full gradient-blue absolute right-0  overflow-hidden  ">
+        <div
+        [ngClass]="auxClass()"
+        class="flex overflow-hidden flex-col items-center justify-center  h-full w-full relative">
+            <img 
+            class="max-h-[95%] max-w-[95%]" [src]="img()"/>
+            @if (name()) {
+                <span
+            class="gradient-blue rounded text-white plate-border w-full text-center text-3xl font-gothamb py-2 absolute bottom-0">
+                {{name()}}
+            </span>
+            }
+        </div>
+    </div>
+</div>

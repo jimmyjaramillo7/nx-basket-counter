@@ -1,0 +1,139 @@
+<div class="min-w-[1024px] min-h-[384px] w-full h-full relative flex flex-col gap-2 overflow-hidden"
+    [ngStyle]="{'background':socketService.backgroundGradient()}">
+    <!-- HEADER -->
+    <div class="relative w-full -top-14 max-h-[190px]">
+        <img src="img/relojborder.png" class="left-0  absolute z-10">
+        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1362.000000 329.000000"
+            preserveAspectRatio="xMidYMid meet">
+
+            <g transform="translate(0.000000,329.000000) scale(0.100000,-0.100000)"
+                [attr.fill]="socketService.colors().header" stroke="none">
+                <path class="shadow-svg" d="M4845 2916 c-93 -29 -166 -97 -216 -199 -16 -33 -35 -64 -42 -69 -6
+-4 -50 -8 -95 -8 -101 0 -147 -18 -170 -67 -14 -30 -14 -37 1 -87 20 -64 16
+-81 -26 -98 -18 -7 -65 -30 -105 -50 l-73 -38 -2059 0 -2060 0 0 -604 0 -604
+123 -6 c67 -3 360 -8 652 -11 292 -3 1043 -14 1670 -25 627 -10 1446 -24 1820
+-30 l680 -11 18 -22 c10 -12 32 -42 50 -66 44 -61 93 -97 160 -121 56 -20 82
+-20 1565 -20 1658 0 1558 -4 1656 61 26 18 62 52 79 77 18 24 42 55 54 68 l22
+24 323 0 c178 0 661 4 1073 10 413 5 1299 17 1970 25 671 8 1329 18 1463 21
+l242 6 0 614 0 614 -2031 0 -2031 0 -63 36 c-35 19 -94 44 -131 54 -92 27
+-101 37 -88 99 14 67 0 108 -46 132 -28 16 -57 19 -155 19 -66 0 -125 4 -131
+8 -6 4 -22 33 -37 64 -34 75 -106 151 -176 185 l-56 28 -1895 2 c-1503 1
+-1903 -1 -1935 -11z" />
+            </g>
+        </svg>
+
+        <!-- LOGOS -->
+        <img [src]="socketService.logoHome()"
+            class="w-[104px] h-[104px] rounded-full absolute left-[28%] top-[62px] z-40 ">
+        <img [src]="socketService.logoGuest()"
+            class="w-[104px] h-[104px] rounded-full absolute right-[27.6%] top-[62px] z-40 ">
+
+        <!-- TIMER -->
+        <span class="text-white text-8xl absolute top-16 left-[40%] font-digital scale-110">
+            {{socketService.timer()}}
+        </span>
+
+        <!-- Nombres -->
+        <div class="w-[270px] h-1/2 absolute z-20 top-[75px] items-center flex justify-center">
+            <span class="uppercase text-white text-center text-balance text-4xl font-black">
+                {{socketService.homeTeamName()}}
+            </span>
+        </div>
+
+        <div class="w-[270px]   right-1 h-1/2 absolute z-20 top-[70px] items-center flex justify-center">
+            <span class="uppercase text-white text-center text-balance text-3xl font-black">
+                {{socketService.guestTeamName()}}
+            </span>
+        </div>
+    </div>
+    <!-- MEDIO -->
+    <div class="w-full grid grid-cols-3 gap-5 text-[13rem] px-5 z-20 mb-5 text-white leading-4">
+        <span class="text-center  font-digital">
+            {{socketService.homeTeam()}}
+        </span>
+        <span class="text-center text-4xl  font-black leading-8 uppercase -mt-4">
+            PERIODO
+            <br>
+            {{socketService.period()}}
+        </span>
+        <span class="text-center  font-digital ">
+            {{socketService.guestTeam()}}
+        </span>
+    </div>
+    <!-- FOOTER -->
+    <div class="w-full h-[115px] absolute bottom-0 grid grid-cols-3 gap-5 text-white">
+        <svg class="absolute w-full bottom-0" version="1.0" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1152.000000 384.000000" preserveAspectRatio="xMidYMid meet">
+
+            <g [attr.fill]="socketService.colors().footer"
+                transform="translate(0.000000,384.000000) scale(0.100000,-0.100000)">
+                <path class="shadow-svg" d="M4195 1132 c-25 -16 -52 -66 -154 -285 l-124 -267 -1959 0 -1958 0 0
+-290 0 -290 5760 0 5760 0 0 290 0 290 -1954 0 c-1553 0 -1956 3 -1963 12 -4
+7 -58 121 -119 253 -62 132 -125 255 -141 273 l-30 32 -1544 0 c-1480 0 -1545
+-1 -1574 -18z" />
+            </g>
+        </svg>
+        <div class="z-10 flex flex-col text-3xl leading-6 items-end justify-end">
+            <span class="text-end">
+                <p class="font-black">FALTAS</p>
+                <div class="text-white flex  items-center mr-10 gap-14">
+                    <div class="font-black flex justify-center items-center gap-2">BONUS:
+                        <div [ngClass]="{'bg-amber-500': socketService.bonusHome() }"
+                            class="w-10 h-10 border-2 rounded-full"></div>
+                    </div>
+                    <span class="font-digital text-6xl">
+                        {{socketService.faultsHome()}}
+                    </span>
+                </div>
+            </span>
+        </div>
+        <div class="z-10">
+            @if (socketService.sponsorsLogos()[indexSponsor()]) {
+            <div class="w-[275px] h-[100px] absolute left-[36.5%] bottom-0 flex justify-center items-center">
+                <img class="max-h-[100px]" [src]="socketService.sponsorsLogos()[indexSponsor()].path" alt="">
+            </div>
+            }
+        </div>
+        <div class="z-10 flex flex-col text-3xl leading-6 items-start justify-end">
+            <span class="text-start">
+                <p class="font-black">FALTAS</p>
+                <div class="text-white flex  items-center ml-10 gap-14">
+                    <span class="font-digital text-6xl">
+                        {{socketService.faultsGuest()}}
+                    </span>
+                    <div class="font-black flex justify-center items-center gap-2">BONUS:
+                        <div [ngClass]="{'bg-amber-500': socketService.bonusGuest() }"
+                            class="w-10 h-10 border-2 rounded-full"></div>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes fadeIn {
+        0% {
+            opacity: 0%;
+        }
+
+        50% {
+            opacity: 50%;
+        }
+
+        100% {
+            opacity: 100%;
+        }
+    }
+
+    .fadeIn {
+        animation-name: fadeIn;
+        animation-duration: 1s;
+    }
+
+    .shadow-svg {
+        -webkit-filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, .7));
+        filter: drop-shadow(3px 3px 20px rgba(0, 0, 0, .7));
+        /* Similar syntax to box-shadow */
+    }
+</style>

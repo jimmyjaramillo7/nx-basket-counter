@@ -1,0 +1,70 @@
+<!-- Cuadro de fondo -->
+<div class="flex flex-row min-h-[180px] w-[1920px] justify-start">
+    <div class="container h-full mx-5 p-1 bg-gradient-to-t from-blue-700 via-[#13253b] to-blue-700 w-3/4">
+        <div class="rounded-lg bg-[#13253b]">
+            <div class="grid grid-cols-6 rounded-md text-6xl">
+                <!-- Primer Logo -->
+                <div class="flex flex-col text-white">
+                    <img class="rounded-bl-md rounded-tl-md max-h-[200px]" src="{{socket.logoHome()}}" alt="Logo">
+                </div>
+
+                <div class="grid grid-cols-4 col-span-4">
+                    <!-- Nombre primer equipo -->
+                    <div class="flex flex-col text-white">
+                        <div
+                            class="flex items-center h-full justify-center align-middle bg-[#13253b] text-6xl font-bin">
+                            <p>{{socket.homeTeamName().replace(' ','').slice(0,3) | uppercase}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Puntajes -->
+                    <div class="flex-col text-7xl flex col-span-2">
+                        <div
+                            class="items-center h-full bg-white grid grid-cols-2 text-center divide-x text-[#13253b] font-gothamb">
+                            <!-- Puntaje primer equipo -->
+                            <div class="border-r-4 border-blue-600">
+                                <p class=" mt-1">{{socket.homeTeam()}}</p>
+                            </div>
+                            <!-- Puntaje segundo equipo -->
+                            <div class="border-l-4 border-blue-600">
+                                <p class=" mt-1">{{socket.guestTeam()}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nombre segundo equipo -->
+                    <div class="flex-col flex text-white">
+                        <div class="flex items-center h-full justify-center bg-[#13253b] font-bin ">
+                            <p>{{socket.guestTeamName().replace(' ','').slice(0,3) | uppercase}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Hora -->
+                    <div class="flex flex-row  col-span-2 items-center justify-center bg-black font-digital">
+                        <!--  <p id="time" class="text-white text-8xl">{{socket.timer()}}</p> -->
+                        <div
+                            class="text-gray-600 max-h-32 relative text-8xl bg-black px-2 font-digital">
+                            <span class="opacity-85">
+                                00:00
+                            </span>
+                            <span class="text-red-500 absolute right-2">
+                                {{this.socket.timer()}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex items-center text-8xl pt-2 text-white justify-center bg-[#2e5e8e] font-gothamm  col-span-2">
+                        <p>P{{socket.period().slice(0,3) | uppercase}}</p>
+                    </div>
+
+                </div>
+
+                <!-- Segundo Logo -->
+                <div class="flex flex-col text-white">
+                    <img class="rounded-br-md rounded-tr-md max-h-[200px]" src="{{socket.logoGuest()}}" alt="Logo">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

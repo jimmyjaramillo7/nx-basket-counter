@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  @font-face {
+    font-family: Mont-Bold;
+    src: url("../public/font/Mont/Mont-HeavyDEMO.otf");
+  }
+
+  @font-face {
+    font-family: Digital-Display;
+    src: url("../public/font/digital/Digital-Display.woff2") format('woff2');
+  }
+
+  @font-face {
+    font-family: Gotham-Bold;
+    src: url("../public/font/Gotham/Gotham-Bold.otf");
+  }
+
+  @font-face {
+    font-family: Gotham-Medium;
+    src: url("../public/font/Gotham/Gotham-Medium.otf");
+  }
+
+  @font-face {
+    font-family: DINEngschriftStd;
+    src: url("../public/font/DIN/DINEngschriftStd.otf");
+  }
+
+
+
+  

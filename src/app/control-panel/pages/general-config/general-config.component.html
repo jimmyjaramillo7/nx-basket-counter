@@ -1,0 +1,273 @@
+<div class="bg-jg min-h-[95dvh]  w-full grid md:grid-cols-3 gap-2 py-5">
+    <div class="flex flex-col items-center">
+        <span class="font-black text-end lg: lg:text-4xl text-xl text-white">
+            EQUIPO LOCAL
+        </span>
+        <!-- NOMBRE Y LOGO LOCAL -->
+        <div class="flex gap-5">
+            <div class="rounded-full w-20 h-20 md:w-28 md:h-28 bg-transparent border-2 border-white relative overflow-clip flex justify-center items-center">
+                <img [src]="socketService.logoHome()" alt="Logo Casa">
+                <div onclick="logoHomeFile.click()" class="flex hover:opacity-40 opacity-0 w-full h-full justify-center items-center bg-slate-100 z-20 absolute top-0">
+                    <span class="text-6xl">
+                        <mat-icon inline fontIcon="upload"></mat-icon>
+                    </span>
+                </div>
+                <input #logoHomeFile id="logoHomeFile" (change)="setLogo('Home',$event.target)" type="file" class="hidden">
+            </div>
+            <form [formGroup]="localTeamForm" (ngSubmit)="changeName('Home')" class="flex flex-col gap-2 justify-center items-center">
+                <div class="max-w-sm space-y-3">
+                    <input formControlName="teamName" type="text"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                        placeholder="Jorge Guzman">
+                </div>
+                <button type="submit" mat-flat-button>
+                    <span class="lg:text-2xl">
+                        Cambiar Nombre
+                    </span>
+                </button>
+            </form>
+        </div>
+        <span class="font-black lg:text-3xl text-white pt-5">
+            PUNTUACIÓN
+        </span>
+        <!-- PUNTUACIÓN LOCAL -->
+        <div class="flex items-center">
+            <div
+                class="text-gray-600 max-h-40 opacity-85 relative text-8xl lg:text-[10rem] leading-none border-2 px-2 rounded-2xl bg-black font-digital">
+                <span>
+                    000
+                </span>
+                <span class="text-red-500 absolute right-2">
+                    {{socketService.homeTeam()}}
+                </span>
+            </div>
+            <div class="flex flex-col gap-4">
+                <button (click)="socketService.emitPoint('Home',3)" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 -ml-10">
+                    <span class=" lg:text-4xl text-2xl">
+                        +3
+                    </span>
+                </button>
+                <button (click)="socketService.emitPoint('Home',2)" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 ml-5">
+                    <span class=" lg:text-4xl text-2xl">
+                        +2
+                    </span>
+                </button>
+                <button (click)="socketService.emitPoint('Home',1)" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 ml-5">
+                    <span class=" lg:text-4xl text-2xl">
+                        +1
+                    </span>
+                </button>
+                <button (click)="socketService.emitPoint('Home',-1)" color="warn" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 -ml-10">
+                    <span class=" lg:text-4xl text-2xl">
+                        -1
+                    </span>
+                </button>
+            </div>
+        </div>
+        <!-- FALTAS LOCAL -->
+        <span class="font-black  lg:text-4xl text-2xl text-white mt-10">
+            FALTAS
+        </span>
+        <div class="flex flex-col items-center ">
+            <div
+                class="text-gray-600 max-h-32 opacity-85 relative text-9xl border-2 px-2 rounded-2xl bg-black font-digital">
+                <span>
+                    00
+                </span>
+                <span class="text-red-500 absolute right-2">
+                    {{this.socketService.faultsHome()}}
+                </span>
+            </div>
+            <div class="flex flex-row gap-4">
+                <button (click)="socketService.emitFault('Home',-1)" color="warn" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 ml-5">
+                    <span class=" lg:text-4xl text-2xl">
+                        -1
+                    </span>
+                </button>
+                <button (click)="socketService.emitFault('Home',1)" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 ml-5">
+                    <span class=" lg:text-4xl text-2xl">
+                        +1
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col items-center">
+        <span class="font-black lg:text-3xl text-white pt-5">
+            PERIODO
+        </span>
+        <form (ngSubmit)="changePeriod()" class="flex gap-2 items-center justify-center" [formGroup]="periodForm">
+            <div class="max-w-sm space-y-3">
+                <input formControlName="period" type="text"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                    placeholder="1">
+            </div>
+            <button type="submit" mat-flat-button>
+                <span class="text-2xl">
+                    Aplicar
+                </span>
+            </button>
+        </form>
+
+        <span class="font-black lg:text-3xl text-white pt-3">
+            TIEMPO DE JUEGO
+        </span>
+        <form [formGroup]="playTimeForm" (ngSubmit)="setTimeOfGame()" class="flex gap-2 items-center justify-center">
+            <div class="max-w-sm space-y-3">
+                <input type="text" formControlName="playtime"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                    placeholder="10:00">
+            </div>
+            <button type="submit" mat-flat-button>
+                <span class="text-2xl">
+                    Aplicar
+                </span>
+            </button>
+        </form>
+
+        <!-- CONTADOR -->
+        <div
+            class="text-gray-600 max-h-80 pl-8 relative mt-10 text-8xl lg:text-[15rem] leading-none border-2 px-2 rounded-2xl bg-black font-digital">
+            <span class="opacity-85">
+                00:00
+            </span>
+            <span class="text-red-500 absolute right-2">
+                {{this.socketService.timer()}}
+            </span>
+        </div>
+
+        <div class="flex flex-row gap-10">
+            <button (click)="playPause()" mat-flat-button class="!rounded-full !h-20 !w-20 lg:!h-36 lg:!w-36 mt-5">
+                <span class="text-6xl">
+                    <mat-icon inline [fontIcon]="socketService.isPaused() ? 'play_arrow': 'pause'"></mat-icon>
+                </span>
+            </button>
+    
+    
+            <button (click)="playSound()" mat-flat-button class="!rounded-full !h-20 !w-20 lg:!h-36 lg:!w-36 mt-5">
+                <span class="text-6xl">
+                    <mat-icon inline fontIcon="volume_up"></mat-icon>
+                </span>
+            </button>
+        </div>
+        <div class="max-w-sm space-y-3 my-5 hidden lg:flex">
+            <input type="text" (keydown)="keyPress($event)"
+                class="py-5 px-4 block w-full placeholder:text-white caret-transparent placeholder:font-black placeholder:text-center border-green-500 focus:bg-green-500 rounded-lg text-sm  disabled:opacity-50 disabled:pointer-events-none"
+                placeholder="Control por teclado ">
+        </div>
+        <img src="img/mainLogo2.png" alt="Jorge Guzman" class="w-1/2 lg:my-2 my-0" >
+
+    </div>
+    <div class="flex flex-col items-center ">
+        <span class="font-black text-end  lg:text-4xl text-xl text-white">
+            EQUIPO VISITANTE
+        </span>
+        <!-- NOMBRE Y LOGO VISITANTE -->
+        <div class="flex flex-row-reverse gap-5">
+            <div class="rounded-full w-20 h-20 md:w-28 md:h-28 bg-transparent border-2 border-white relative overflow-clip flex justify-center items-center">
+                <img [src]="socketService.logoGuest()" alt="Logo Visitante">
+                <div onclick="logoGuestFile.click()" class="flex hover:opacity-40 opacity-0 w-full h-full justify-center items-center bg-slate-100 z-20 absolute top-0">
+                    <span class="text-6xl">
+                        <mat-icon inline fontIcon="upload"></mat-icon>
+                    </span>
+                </div>
+                <input #logoGuestFile id="logoGuestFile" (change)="setLogo('Guest',$event.target)" type="file" class="hidden">
+            </div>
+            <form (ngSubmit)="changeName('Guest')" [formGroup]="guestTeamForm"  class="flex flex-col justify-center items-center gap-2">
+                <div class="max-w-sm space-y-3">
+                    <input type="text" formControlName="teamName"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                        placeholder="Jaguares">
+                </div>
+                <button type="submit" mat-flat-button>
+                    <span class="lg:text-2xl">
+                        Cambiar Nombre
+                    </span>
+                </button>
+            </form>
+        </div>
+        <span class="font-black lg:text-3xl text-white pt-5">
+            PUNTUACIÓN
+        </span>
+        <!-- PUNTUACIÓN VISITANTE -->
+        <div class="flex items-center flex-row-reverse">
+            <div
+                class="text-gray-600 max-h-40  relative text-8xl lg:text-[10rem] leading-none border-2 px-2 rounded-2xl bg-black font-digital">
+                <span class="opacity-85">
+                    000
+                </span>
+                <span class="text-red-500 absolute right-2">
+                    {{socketService.guestTeam()}}
+                </span>
+            </div>
+            <div class="flex flex-col gap-4">
+                <button (click)="socketService.emitPoint('Guest',3)" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 ml-10">
+                    <span class=" lg:text-4xl text-2xl">
+                        +3
+                    </span>
+                </button>
+                <button (click)="socketService.emitPoint('Guest',2)" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 -ml-5">
+                    <span class=" lg:text-4xl text-2xl">
+                        +2
+                    </span>
+                </button>
+                <button (click)="socketService.emitPoint('Guest',1)" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 -ml-5">
+                    <span class=" lg:text-4xl text-2xl">
+                        +1
+                    </span>
+                </button>
+                <button (click)="socketService.emitPoint('Guest',-1)" color="warn" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 ml-10">
+                    <span class=" lg:text-4xl text-2xl">
+                        -1
+                    </span>
+                </button>
+            </div>
+        </div>
+        <!-- FALTAS VISITANTE -->
+        <span class="font-black  lg:text-4xl text-2xl text-white mt-5">
+            FALTAS
+        </span>
+        <div class="flex flex-col items-center ">
+            <div
+                class="text-gray-600 max-h-32 opacity-85 relative text-9xl border-2 px-2 rounded-2xl bg-black font-digital">
+                <span>
+                    00
+                </span>
+                <span class="text-red-500 absolute right-2">
+                    {{socketService.faultsGuest()}}
+                </span>
+            </div>
+            <div class="flex flex-row gap-4">
+                <button (click)="socketService.emitFault('Guest',-1)" color="warn" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 ml-5">
+                    <span class=" lg:text-4xl text-2xl">
+                        -1
+                    </span>
+                </button>
+                <button (click)="socketService.emitFault('Guest',1)" mat-flat-button
+                    class="!rounded-full lg:!h-20 lg:!w-20 !h-12 !w-12 ml-5">
+                    <span class=" lg:text-4xl text-2xl">
+                        +1
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .bg-jg {
+        background: linear-gradient(320deg, #fe7320 50%, #1b1b1b 50%);
+    }
+</style>

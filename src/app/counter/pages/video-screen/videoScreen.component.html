@@ -1,0 +1,8 @@
+<div class="w-full h-full bg-black justify-center items-center flex bg-gradient-to-r relative">
+    <video [src]="selectedVideo()" autoplay muted loop class="max-h-[384px] w-full">
+
+    </video>
+    @if (socket.timer() != "00:00") {
+    <app-mini-counter class="absolute top-0 left-[30%] scale-90" />
+    }
+</div>
