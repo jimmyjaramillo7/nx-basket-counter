@@ -1,0 +1,13 @@
+<div class="h-screen w-screen flex justify-center items-center">
+    <!--  @if (cam() == 0) {
+        <div class="w-screen h-screen flex justify-center">
+            <webcam  class="scale-[1.58]"></webcam>
+        </div>
+    } -->
+    <img [src]="cam()" class="w-full">
+    @if (socket.timer() != "00:00") {
+        <div class="absolute z-20 -bottom-1 -right-12 scale-75">
+            <app-mini-counter/>
+        </div>
+    }
+</div>

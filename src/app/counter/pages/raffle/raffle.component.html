@@ -1,0 +1,56 @@
+<div class="w-[1024px] h-[384px] bg-[#0635C9] relative">
+    <div class="flex justify-between">
+        <div class="flex justify-center items-center">
+            <img src="img/img-clip.png" class="w-[70%]">
+        </div>
+        <div class="flex justify-end mix-blend-color-burn">
+            <img src="img/clipp-path.png" class="w-[67%]">
+        </div>
+    </div>
+
+    <img src="img/nodo-logo.webp" alt="" class="absolute right-0 bottom-3 mr-6 w-48 ">
+
+    <div class="backdrop-blur-sm bg-white/30 w-[44%] h-[90%] form-sorteo p-4 rounded-lg">
+       
+        <p class="text-2xl text-center dm-serif-text-regular-italic text-white">
+            ¡Premio!
+        </p>
+        <div class="flex justify-center ">
+            <img src="img/raffle/{{selectedPrice().photo}}" class="w-full max-w-[40%] h-full max-h-[65%]">
+        </div>
+
+        <div class="flex justify-center pt-4 flex-col items-center">
+            @if (sorteoTerminal()) {
+            <div class="flex justify-center flex-col">
+                <h1 class="text-white text-2xl text-center">GANADOR / GANADORA</h1>
+
+                <div class="text-3xl mt-2 bg-blue-100 p-3 shadow-xl text-center rounded-lg">
+                    <p class="dm-serif-text-regular-italic text-balance">{{ ganador() }}</p>
+                </div>
+            </div>
+            } @else {
+            @if (start()) {
+            <div class="max-h-28  overflow-y-hidden px-4 ">
+
+                <ul>
+                    @for (item of multimedia.participantList(); track $index) {
+                    <li #participant class="text-xl mb-3 text-white text-center dm-serif-text-regular-italic">
+                        {{ item | titlecase}}
+                    </li>
+                    }
+                </ul>
+            </div>
+            } @else{
+            <!-- <button tooltipPosition="top" class="loader bg-[#0635C9] rounded-full text-white text-2xl"
+                (click)="startSorting()">
+                GO
+            </button> -->
+            <h2 class="dm-serif-text-regular-italic text-balance text-4xl text-white">
+                   {{selectedPrice().label}}
+            </h2>
+            }
+            }
+        </div>
+    </div>
+
+</div>

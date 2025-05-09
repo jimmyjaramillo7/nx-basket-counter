@@ -1,0 +1,25 @@
+<div class="h-screen relative w-screen flex flex-col gap-10 items-center justify-center bg-[#0635C9]">
+    <p class="z-10 text-3xl text-white font-bold">
+        Premio:
+        <br>
+        <mat-button-toggle-group class="bg-white ml-3 mt-3" (change)="changePrice($event.value)">
+            @for (item of prices; track item.value) {
+                <mat-button-toggle class="!text-2xl" [checked]="selectedPrice() == item.value" [value]="item.value">{{item.label}}</mat-button-toggle>
+            }
+        </mat-button-toggle-group>
+      </p>
+    <span class="text-center text-4xl text-white font-bold z-10">
+        Buscar un ganador
+    </span>
+	<div (click)="searchWinner()" class='button w-40 h-16 bg-blue-500 z-10 cursor-pointer select-none
+    active:translate-y-2  active:[box-shadow:0_0px_0_0_#1b6ff8,0_0px_0_0_#1b70f841]
+    active:border-b-[0px]
+    transition-all duration-150 [box-shadow:0_10px_0_0_#1b6ff8,0_15px_0_0_#1b70f841]
+    rounded-full  border-[1px] border-blue-400
+    
+  '>
+		<span class='flex flex-col justify-center items-center h-full text-white font-bold text-lg '>Sortear</span>
+	</div>
+    <img src="img/clipp.webp" class="w-64 absolute bottom-10 z-10">
+    <img src="img/clipp-path.png" class="h-full mix-blend-color-burn z-0 right-0 absolute bottom-10">
+</div>

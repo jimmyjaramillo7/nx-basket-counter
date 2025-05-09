@@ -1,0 +1,93 @@
+<div class="bg-jg min-h-[100dvh] w-full flex flex-col gap-3 py-2">
+    @for (item of views(); track item.name) {
+    <div class="p-5 border mx-2 rounded bg-gray-50">
+        <!-- <label class="relative inline-flex cursor-pointer items-center">
+            <input (click)="changeView(item.name)" name="screen" [checked]="item.isSelected" type="checkbox"
+                class="peer sr-only" />
+            <label class="hidden"></label>
+            <div
+                class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-300 peer-checked:after:translate-x-full peer-focus:ring-green-300">
+            </div>
+        </label> -->
+        <mat-slide-toggle (click)="changeView(item.name)" [checked]="item.isSelected"></mat-slide-toggle>
+
+        {{item.title}}
+    </div>
+    }
+
+    <div class="grid lg:grid-cols-2 gap-2">
+        <div class="flex flex-col gap-2 bg-gray-50 p-5 mx-2 max-w-[95dvw] w-full">
+            Control de Cámaras
+            <div class="w-full">
+                <label class="block mb-2 text-sm font-medium text-gray-900">URL cámara</label>
+                <input type="text"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2"
+                    [(ngModel)]="pathCam" placeholder="http://192.168.100.210:5000/video_feed" />
+                <button type="submit" (click)="changeCam()"
+                    class="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 !rounded-full">
+                    Aplicar
+                </button>
+                <br>
+                <br>
+                <mat-slide-toggle (click)="toggleHearts()" [checked]="showHearts()"></mat-slide-toggle>
+                Mostrar Corazones
+                <!-- <button type="submit" (click)="changeCam()"
+                    class="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 !rounded-full">
+                    Mostrar Corazones
+                </button> -->
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-2 bg-gray-50 p-5 mx-2 max-w-[95dvw] w-full">
+            Control de Cámara de Similares
+            <div class="flex flex-row gap-3">
+
+                <div class="w-48 h-48 flex justify-center items-center border overflow-hidden">
+                    <img [src]="charImg()" alt="Previsualización de personaje">
+                </div>
+
+                <div class="flex flex-col w-full">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">
+                        Nombre del personaje
+                    </label>
+                    <input type="text"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2"
+                        [(ngModel)]="charName" placeholder="Goku" />
+
+                    <label class="block mb-2 text-sm font-medium text-gray-900">
+                        Imagen del personaje
+                    </label>
+                    <div class="flex flex-row gap-3">
+                        <input type="text"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2"
+                            [(ngModel)]="charImg" placeholder="Goku" />
+                        <button type="submit" onclick="charImgFile.click()"
+                            class="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center rounded-full bg-blue-600 hover:brightness-110">
+                            Explorar
+                        </button>
+                        <input #charImgFile id="charImgFile" (change)="uploadLogo($event.target)" type="file"
+                            class="hidden">
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button type="submit" (click)="setAlikeCam()"
+                            class="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center rounded-full bg-blue-600 hover:brightness-110">
+                            Aplicar
+                        </button>
+
+                        <button type="submit" (click)="showAlikeCam()"
+                            class="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center rounded-full bg-green-600 hover:brightness-110">
+                            Mostrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-jg {
+        background: linear-gradient(320deg, #1b1b1b 50%, #fe7320 50%);
+    }
+</style>

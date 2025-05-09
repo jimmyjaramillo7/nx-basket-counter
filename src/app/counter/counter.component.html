@@ -1,0 +1,28 @@
+<div class="w-[1024px] h-[384px] bg-black relative overflow-hidden">
+    @if (firstLoad() || navigating()) {
+    <div [ngClass]="{'slideInOut': !firstLoad(),'slideLeft':firstLoad()}"
+        class="slideLeft w-1/2 h-full bg-[#fd700e] absolute -translate-x-full z-50">
+        <img class="h-4/5 absolute right-0 top-0" src="img/l-logo.webp" alt="Logo">
+        <div class="flex flex-row w-full gap-3 h-16 absolute bottom-2 items-center justify-evenly">
+            <img class="h-full" src="img/logoutpl.webp" alt="Logo UTPL">
+            <img class="h-full" src="img/clipp.webp" alt="Logo Clipp">
+        </div>
+    </div>
+    <div [ngClass]="{'slideOutIn': !firstLoad(),'slideRight':firstLoad()}"
+        class="w-1/2 h-full bg-[#147bd7] absolute right-0 translate-x-full z-50">
+        <img class="h-4/5 absolute left-0" src="img/r-logo.webp" alt="Logo">
+        <div class="flex flex-row w-full gap-3 h-16 absolute bottom-2 items-center justify-evenly">
+            <img class="h-full" src="img/banco-pichincha.webp" alt="Logo">
+            <img class="h-full" src="img/nodo-logo.webp" alt="Logo">
+        </div>
+    </div>
+    }
+    <router-outlet />
+</div>
+
+
+<style>
+    .bg-jg {
+        background: linear-gradient(320deg, #fe7320 50%, #1b1b1b 50%);
+    }
+</style>
